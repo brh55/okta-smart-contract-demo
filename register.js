@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 
 const client = new okta.Client({
-    orgUrl: 'https://dev-1234.oktapreview.com/',
+    orgUrl: process.env.OKTA_DOMAIN,
     token: process.env.OKTA_API_TOKEN
 });
 
