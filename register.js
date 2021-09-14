@@ -2,7 +2,7 @@ const crypto = require('crypto');
 
 const client = new okta.Client({
     orgUrl: 'https://dev-1234.oktapreview.com/',
-    token: process.env.OKTA_TOKEN
+    token: process.env.OKTA_API_TOKEN
 });
 
 module.exports.handler = async (event) => {
