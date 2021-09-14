@@ -22,3 +22,17 @@ functions:
           path: /inline
           method: post
           cors: true
+  createSession:
+    handler: createSession.handler
+    events:
+      - http:
+          path: /createSession
+          method: post
+          cors: true
+  register:
+    handler: register.handler
+    events:
+      - http:
+          path: /register
+          method: post
+          cors: true

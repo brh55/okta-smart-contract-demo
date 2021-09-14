@@ -14,7 +14,7 @@ module.exports.handler = async (event) => {
     
         // Stub password for now
         // We would need to figure out how we can use
-        //  the signature verifier as a login factor
+        // the signature verifier as a login factor
         // SHA256 + Contract Private Key + Wallet Address
         const stubPassword = crypto.createHmac('sha256', process.env.ACCOUNT_KEY)
             .update(address)
@@ -35,7 +35,7 @@ module.exports.handler = async (event) => {
         if (user) {
             return {
                 statusCode: 200,
-                body: "Successfully"
+                body: `Successfully registered address: ${address}`
             }
         } else {
             throw new Error("Could not create user");
