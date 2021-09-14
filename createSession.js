@@ -19,7 +19,7 @@ module.exports.handler = async (event) => {
         });
 
         const payload = JSON.parse(event.body).data;
-        const { address } = payload;
+        const { address, redirectUri } = payload;
 
         // Stub password for now
         // We would need to figure out how we can use
@@ -36,8 +36,9 @@ module.exports.handler = async (event) => {
 
         if (transaction.status === 'SUCCESS') {
             const { sessionToken } = transaction;
-            const redirectUrl = `${process.env.OKTA_AUTH_ISSUER}/v1/authorize?client_id=${process.env.OKTA_CLIENT_ID}&response_type=id_token&scope=session&prompt=none&redi&sessionToken=${sessionToken}&redirect_uri=${redirectUri}`;
-
+            // const redirectUrl = `${process.env.OKTA_AUTH_ISSUER}/v1/authorize?client_id=${process.env.OKTA_CLIENT_ID}&response_type=id_token&scope=session&prompt=none&redi&sessionToken=${sessionToken}&redirect_uri=${redirectUri}`;
+            // This should be fine as we are not trying to retrieve a token, we are just establishing a session with a redirect
+            const redirectUrl = `https://${process.env.OKTA_DOMAIN}/login/sessionCookieRedirect?token=${sessionToken}&redirectUrl=${redirectUri}`;
             return {
                 statusCode: 301,
                 Headers: {
